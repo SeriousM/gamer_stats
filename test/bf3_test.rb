@@ -1,11 +1,13 @@
-require_relative '../lib/bf3'
+require 'p_stats'
 require 'minitest/spec'
 require 'minitest/autorun'
 
-describe PStats::Bf3::Player do
+include PStats
+
+describe Bf3::Player do
   before do
-    @player = PStats::Bf3::Player.new('SeriousM', 'pc')
-    @non_player = PStats::Bf3::Player.new('xx', 'xx')
+    @player = Bf3::Player.new('SeriousM', 'pc')
+    @non_player = Bf3::Player.new('xx', 'xx')
   end
 
   describe 'getting a player' do
@@ -37,7 +39,7 @@ describe PStats::Bf3::Player do
 
   describe 'will throw an error when the player does not exist' do
     it 'on load' do
-      ->{@non_player.load}.must_raise ArgumentError
+      ->{@non_player.load}.must_raise PStatsError
     end
   end
 end
