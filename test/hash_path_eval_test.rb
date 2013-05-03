@@ -31,4 +31,8 @@ describe Hash do
   it "works with a mixed hash" do
     h_mixed.path(':a/b/:c').must_equal 1
   end
+  
+  it "return nil on non existing path" do
+    h_mixed.path(':a/x/:c').must_be_nil
+  end
 end
