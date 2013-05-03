@@ -2,6 +2,8 @@
 require 'bundler/gem_tasks'
 require 'rake/testtask'
 
+task :default => :test
+
 Rake::TestTask.new do |t|
   t.inspect
   t.libs.push "lib"
