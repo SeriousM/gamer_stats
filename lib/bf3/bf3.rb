@@ -6,7 +6,7 @@ module GamerStats
   module Bf3
     class Player
 
-      def initialize(name, platform, player = [])
+      def initialize(name, platform, player = {})
         @name = name
         @platform = platform
         @player = player.deep_dup
@@ -37,18 +37,19 @@ module GamerStats
       end
 
       def kdr
+        load
         return get_current('global/kills').to_f / get_current('global/kills')
       end
       
     private
 
-      def loaded?(path)
+      def loaded?(path='')
         val = @player.path(path)
         false if val.nil? or val.empty?
       end
 
       def get_current(path)
-        @player.path(path).deep_dup
+        @player.deep_dup.path(path)
       end
 
       def merge(player)
