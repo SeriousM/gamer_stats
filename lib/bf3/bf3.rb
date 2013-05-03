@@ -6,33 +6,41 @@ module PStats
   module Bf3
     class Player
 
-      def initialize(name, platform)
+      def initialize(name, platform, player = [])
         @name = name
         @platform = platform
+        @player = player
       end
 
-      def stats!(opt='clear,global')
-        @stats = load(opt)['stats']
+      def stats!()
+        raw_load
+        @player['stats']
       end
 
-      def stats(opt='clear,global')
-        @stats ||= stats!(opt)
+      def stats()
+        raw_load if @player['stats'].empty?
+        @player['stats']
       end
 
-      def load!(opt='clear,global')
-        @player_stats = raw_load(opt)
+      def load!()
+        raw_load
+        @player
       end
 
-      def load(opt='clear,global')
-        @player_stats ||= load!(opt)
+      def load()
+        raw_load if @player.empty?
+        @player
       end
 
       def kdr
-        stats() unless @stats and @stats['global']['kills']
-        return @stats['global']['kills'].to_f / @stats['global']['deaths']
+        return stats['global']['kills'].to_f / stats['global']['deaths']
       end
       
     private
+
+      def merge(player)
+        @player.deep_merge! player
+      end
 
       def raw_load(opt='clear,global')
         body = {
@@ -48,7 +56,7 @@ module PStats
         end
         
         if response.code == 200 && response['status'] == "data"
-          JSON(response.body)
+          merge JSON(response.body)
         else
           raise PStatsError, "Bf3: #{response['error']}"
         end
