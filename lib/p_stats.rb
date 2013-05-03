@@ -1,5 +1,4 @@
-require "p_stats/version"
-require "bf3"
+Dir['./**/*.rb'].each{ |f| require f }
 
 module PStats
 end
