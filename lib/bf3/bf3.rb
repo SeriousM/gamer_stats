@@ -1,8 +1,8 @@
 require 'httparty'
 require 'json'
-require 'p_stats'
+require 'gamer_stats'
 
-module PStats
+module GamerStats
   module Bf3
     class Player
 
@@ -65,13 +65,13 @@ module PStats
         begin
           response = HTTParty.post("http://api.bf3stats.com/#{@platform}/player/", :body => body, timeout: 5)
         rescue => e
-          raise PStatsError, "Error on loading the player: #{e.message}"
+          raise GamerStatsError, "Error on loading the player: #{e.message}"
         end
         
         if response.code == 200 && response['status'] == "data"
           @player = merge JSON(response.body)
         else
-          raise PStatsError, "Bf3: #{response['error']}"
+          raise GamerStatsError, "Bf3: #{response['error']}"
         end
       end
     end

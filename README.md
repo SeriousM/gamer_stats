@@ -1,6 +1,6 @@
-[![Build Status](https://travis-ci.org/SeriousM/p_stats.png?branch=master)](https://travis-ci.org/SeriousM/p_stats)
+[![Build Status](https://travis-ci.org/SeriousM/gamer_stats.png?branch=master)](https://travis-ci.org/SeriousM/gamer_stats)
 
-# PStats
+# GamerStats
 
 Provides a way to gather game stats from the http://p-stats.com network
 
@@ -8,7 +8,7 @@ Provides a way to gather game stats from the http://p-stats.com network
 
 Add this line to your application's Gemfile:
 
-    gem 'p_stats'
+    gem 'gamer_stats'
 
 And then execute:
 
@@ -16,7 +16,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install p_stats
+    $ gem install gamer_stats
 
 ## Usage
 

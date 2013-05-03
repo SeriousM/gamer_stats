@@ -1,3 +1,3 @@
-module PStats
+module GamerStats
   VERSION = "0.1.0"
 end

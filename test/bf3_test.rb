@@ -1,8 +1,8 @@
-require 'p_stats'
+require 'gamer_stats'
 require 'minitest/spec'
 require 'minitest/autorun'
 
-include PStats
+include GamerStats
 
 describe Bf3::Player do
   let(:player) { Bf3::Player.new 'SeriousM', 'pc' }
@@ -37,7 +37,7 @@ describe Bf3::Player do
 
   describe 'will throw an error when the player does not exist' do
     it 'on load' do
-      ->{@non_player.load}.must_raise PStatsError
+      ->{@non_player.load}.must_raise GamerStatsError
     end
   end
 end
