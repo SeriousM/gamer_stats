@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/SeriousM/p_stats.png?branch=master)](https://travis-ci.org/SeriousM/p_stats)
+
 # PStats
 
 Provides a way to gather game stats from the http://p-stats.com network
