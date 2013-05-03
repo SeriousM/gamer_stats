@@ -5,13 +5,14 @@ require 'minitest/autorun'
 include GamerStats
 
 describe Bf3::Player do
+
   let(:player) { Bf3::Player.new 'SeriousM', 'pc' }
   let(:non_player) { Bf3::Player.new 'xx', 'xx' }
 
   describe 'getting a player' do
     it 'should return the player requested' do
-      player = @player.load
-      player['country'].wont_be_nil
+      stats = player.load
+      stats['country'].wont_be_nil
     end
   end
 
@@ -37,7 +38,7 @@ describe Bf3::Player do
 
   describe 'will throw an error when the player does not exist' do
     it 'on load' do
-      ->{@non_player.load}.must_raise GamerStatsError
+      ->{ non_player.load }.must_raise GamerStatsError
     end
   end
 end
