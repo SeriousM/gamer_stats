@@ -9,37 +9,50 @@ module PStats
       def initialize(name, platform, player = [])
         @name = name
         @platform = platform
-        @player = player
+        @player = player.deep_dup
       end
 
-      def stats!()
+      def current
+        get_current
+      end
+
+      def stats!
         raw_load
-        @player['stats']
+        get_current 'stats'
       end
 
-      def stats()
-        raw_load if @player['stats'].empty?
-        @player['stats']
+      def stats
+        raw_load unless loaded? 'stats'
+        get_current 'stats'
       end
 
-      def load!()
-        raw_load
-        @player
+      def load!(opt='clear,global')
+        raw_load(opt)
+        get_current
       end
 
-      def load()
-        raw_load if @player.empty?
-        @player
+      def load(opt='clear,global')
+        raw_load(opt) unless loaded?
+        get_current
       end
 
       def kdr
-        return stats['global']['kills'].to_f / stats['global']['deaths']
+        return get_current('global/kills').to_f / get_current('global/kills')
       end
       
     private
 
+      def loaded?(path)
+        val = @player.path(path)
+        false if val.nil? or val.empty?
+      end
+
+      def get_current(path)
+        @player.path(path).deep_dup
+      end
+
       def merge(player)
-        @player.deep_merge! player
+        @player.deep_merge player
       end
 
       def raw_load(opt='clear,global')
@@ -56,7 +69,7 @@ module PStats
         end
         
         if response.code == 200 && response['status'] == "data"
-          merge JSON(response.body)
+          @player = merge JSON(response.body)
         else
           raise PStatsError, "Bf3: #{response['error']}"
         end
