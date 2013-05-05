@@ -38,7 +38,7 @@ module GamerStats
 
       def kdr
         load
-        return get_current('global/kills').to_f / get_current('global/kills')
+        return get_current('stats/global/kills').to_f / get_current('stats/global/deaths')
       end
       
     private
@@ -48,7 +48,7 @@ module GamerStats
         false if val.nil? or val.empty?
       end
 
-      def get_current(path)
+      def get_current(path='')
         @player.deep_dup.path(path)
       end
 
