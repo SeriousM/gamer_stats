@@ -24,7 +24,7 @@ describe Bf3::Player do
 
     it 'should have some global stats' do
       player.load('clear,global')
-      player.current['global'].wont_be_nil
+      player.current['stats']['global'].wont_be_nil
     end
   end
 
