@@ -1,7 +1,4 @@
-require_relative 'test_helper'
-require 'gamer_stats'
-
-include GamerStats
+require_relative '../test_helper'
 
 describe Bf3::Player do
 
