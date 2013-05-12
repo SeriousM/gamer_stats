@@ -4,6 +4,7 @@ require 'gamer_stats/version'
 require 'helper/deep_dup'
 require 'helper/deep_merge'
 require 'helper/hash_path_eval'
+require 'achievements/achievements'
 
 module GamerStats
 end
