@@ -2,6 +2,10 @@ require 'minitest/spec'
 require 'minitest/autorun'
 require 'vcr'
 
+require 'gamer_stats'
+
+include GamerStats
+
 VCR.configure do |c|
   c.hook_into :webmock
   c.cassette_library_dir = 'test/cassettes'
