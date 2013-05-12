@@ -1,6 +1,4 @@
-require_relative '../lib/helper/hash_path_eval'
-require 'minitest/spec'
-require 'minitest/autorun'
+require_relative '../test_helper'
 
 describe Hash do
   let(:h_empty) { {} }
