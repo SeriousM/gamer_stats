@@ -5,6 +5,7 @@ require 'vcr'
 require 'gamer_stats'
 
 include GamerStats
+include Achievements
 
 VCR.configure do |c|
   c.hook_into :webmock
