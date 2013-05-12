@@ -1,6 +1,5 @@
+require_relative 'test_helper'
 require 'gamer_stats'
-require 'minitest/spec'
-require 'minitest/autorun'
 
 include GamerStats
 
