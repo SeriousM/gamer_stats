@@ -9,7 +9,7 @@ include Achievements
 
 VCR.configure do |c|
   c.hook_into :webmock
-  c.cassette_library_dir = 'test/cassettes'
+  c.cassette_library_dir = "#{File.expand_path(File.dirname(__FILE__))}/cassettes"
   # :new_episodes = add new requests to the same cassette
   c.default_cassette_options = { :record => :new_episodes, :erb => true }
   # dont raise exceptions when no cassette is in the tray
